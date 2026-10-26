@@ -1,0 +1,9 @@
+ano_arquivo,nascidos_vivos,contador_duplicado,data_invalida,data_fora_do_ano_do_arquivo,pct_sem_peso,pct_sem_apgar5,pct_sem_semanas_gestacao,pct_sem_prematuro,pct_sem_n_consultas_prenatal,pct_sem_idade_mae,pct_sem_raca_cor,pct_escolaridade_mae_ignorada,peso_menor_500g,idade_mae_menor_12,idade_mae_50_ou_mais,codigos_sem_rotulo
+2019,76803,0,0,0,0.0,1.02,0.37,0.37,2.46,0.01,2.09,3.37,129,0,24,
+2020,73135,0,0,0,0.0,0.94,0.73,0.73,3.16,0.0,3.21,3.28,93,2,25,
+2021,68874,0,0,0,0.0,1.02,0.9,0.9,4.15,0.0,3.54,3.34,108,3,8,
+2022,64978,0,0,0,0.0,1.2,0.64,0.64,4.2,0.0,3.74,2.31,154,1,24,
+2023,62850,0,0,0,0.0,0.89,0.35,0.35,0.63,0.0,0.68,0.45,122,3,34,
+2024,57457,0,0,0,0.0,0.84,0.53,0.53,0.68,0.0,0.96,0.48,77,0,23,
+2025,58726,0,0,0,0.0,0.77,0.44,0.44,0.62,0.0,0.89,0.74,61,1,21,
+2026,32766,0,0,0,0.0,0.88,0.46,0.46,0.93,0.0,1.2,0.87,48,0,10,

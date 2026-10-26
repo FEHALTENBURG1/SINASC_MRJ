@@ -1,0 +1,9 @@
+ano,url,last_modified,content_length,linhas_brasil,linhas_mrj,data_min,data_max,processado_em
+2019,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2019_csv.zip,2026-05-08T17:26:48Z,115471101,2849146,76803,2019-01-01,2019-12-31,2026-10-26T14:52:48Z
+2020,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2020_csv.zip,2026-05-08T17:26:56Z,110956183,2730145,73135,2020-01-01,2020-12-31,2026-10-26T14:53:11Z
+2021,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2021_csv.zip,2026-05-08T17:40:32Z,108627610,2677101,68874,2021-01-01,2021-12-31,2026-10-26T14:53:35Z
+2022,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2022_csv.zip,2026-05-08T17:40:40Z,105146642,2561922,64978,2022-01-01,2022-12-31,2026-10-26T14:53:57Z
+2023,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2023_csv.zip,2026-05-08T17:40:48Z,106371533,2537576,62850,2023-01-01,2023-12-31,2026-10-26T14:54:20Z
+2024,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2024_csv.zip,2026-05-08T17:40:56Z,92289354,2389325,57457,2024-01-01,2024-12-31,2026-10-26T14:58:35Z
+2025,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2025_csv.zip,2026-08-31T19:27:08Z,102484647,2456688,58726,2025-01-01,2025-12-31,2026-10-26T14:54:43Z
+2026,https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SINASC/csv/SINASC_2026_csv.zip,2026-10-02T14:52:15Z,64798812,1504579,32766,2026-01-01,2026-08-25,2026-10-26T14:58:59Z

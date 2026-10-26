@@ -1,0 +1,86 @@
+name: Atualizar SINASC (MRJ)
+
+on:
+  schedule:
+    # Segundas-feiras, 08:00 UTC (05:00 em Brasília). Sem mudança na origem, a execução só consulta os cabeçalhos.
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+    inputs:
+      anos:
+        description: >
+          Anos a processar (ex.: "2024-2026" ou "2019,2025"). Vazio = 2019 até o ano corrente,
+          reprocessando só o que mudou na origem.
+        required: false
+        default: ""
+      forcar:
+        description: "Reprocessar mesmo que a origem não tenha mudado"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write # grava os arquivos de dados/ no próprio repositório
+
+concurrency:
+  group: atualizar-sinasc
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt pytest
+
+      - name: Testes
+        run: python -m pytest -q tests
+
+      - name: Definir anos
+        id: anos
+        env:
+          ENTRADA: ${{ github.event.inputs.anos }}
+        run: |
+          if [ -n "$ENTRADA" ] && ! [[ "$ENTRADA" =~ ^[0-9]{4}(-[0-9]{4})?(,[0-9]{4}(-[0-9]{4})?)*$ ]]; then
+            echo "Entrada inválida para anos: $ENTRADA" >&2
+            exit 1
+          fi
+          echo "anos=$ENTRADA" >> "$GITHUB_OUTPUT"
+
+      - name: Rodar pipeline
+        id: pipeline
+        continue-on-error: true # os anos que deram certo ainda são gravados no passo seguinte
+        env:
+          ANOS: ${{ steps.anos.outputs.anos }}
+          FORCAR: ${{ github.event.inputs.forcar }}
+        run: |
+          ARGS="--apagar-zip"
+          if [ -n "$ANOS" ]; then ARGS="$ARGS --anos $ANOS"; fi
+          if [ "$FORCAR" = "true" ]; then ARGS="$ARGS --forcar"; fi
+          python sinasc_datalake.py $ARGS
+
+      - name: Gravar mudanças no repositório
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados
+          if git diff --cached --quiet; then
+            echo "Sem mudanças em dados/."
+          else
+            git commit -m "Atualiza nascidos vivos MRJ ($(date -u +%Y-%m-%d))"
+            git push
+          fi
+
+      - name: Falhar se o pipeline falhou
+        if: steps.pipeline.outcome == 'failure'
+        run: |
+          echo "O pipeline terminou com erro em algum ano; veja o log do passo anterior." >&2
+          exit 1

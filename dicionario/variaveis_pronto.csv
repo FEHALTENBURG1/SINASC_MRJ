@@ -1,0 +1,59 @@
+variavel,campo_origem,tipo,descricao,valores,observacao
+contador,CONTADOR,texto,Número sequencial do registro dentro do arquivo do ano.,,Único dentro de cada ano e repetido entre anos.
+ano_arquivo,arquivo de origem,inteiro,Ano do arquivo do OpenDATASUS de onde a linha veio.,,Em 2019 a 2026 coincide com o ano de nascimento.
+data_nascimento,DTNASC,data,Data de nascimento do nascido vivo.,,Convertida de ddmmaaaa.
+ano_nascimento,DTNASC,inteiro,Ano civil do nascimento.,,
+mes_nascimento,DTNASC,inteiro,Mês civil do nascimento.,1 a 12,
+ano_mes,DTNASC,texto,Ano e mês do nascimento.,AAAA-MM,
+ano_epi,derivada de DTNASC,inteiro,Ano epidemiológico do nascimento.,,Semana de domingo a sábado; a SE 1 é a que contém 4 de janeiro (critério MMWR).
+sem_epi,derivada de DTNASC,inteiro,Semana epidemiológica do nascimento.,1 a 53,2025 tem 53 semanas.
+periodo_se,derivada de DTNASC,texto,Ano epidemiológico e semana.,AAAA-SEnn,
+inicio_semana_epi,derivada de DTNASC,data,Domingo que abre a semana epidemiológica do nascimento.,,
+hora_nascimento,HORANASC,inteiro,Hora cheia do nascimento (os dois primeiros dígitos de HHMM).,0 a 23,NA quando o campo vem vazio.
+codigo_municipio_residencia,CODMUNRES,texto,Código IBGE de 6 dígitos do município de residência da mãe.,330455,"Sempre 330455, que é o critério de inclusão."
+codigo_municipio_nascimento,CODMUNNASC,texto,Código IBGE de 6 dígitos do município onde o nascimento ocorreu.,,
+nascido_no_municipio,derivada de CODMUNNASC,lógico,Verdadeiro quando o nascimento ocorreu no município do Rio de Janeiro.,verdadeiro; falso,
+municipio_nascimento,derivada de CODMUNNASC,texto,Nome do município de nascimento.,,Só para municípios do estado do Rio de Janeiro (referencias/municipios_rj.csv). NA para os demais.
+local_nascimento,LOCNASC,rótulo,Local de ocorrência do nascimento.,Hospital; Outros estabelecimentos de saúde; Domicílio; Outros; Aldeia indígena; Ignorado,
+codigo_estabelecimento,CODESTAB,texto,Código CNES do estabelecimento de saúde do nascimento.,,Mantém os zeros à esquerda. NA quando o campo vem vazio.
+idade_mae,IDADEMAE,inteiro,Idade da mãe em anos.,,O código 99 vira NA. Valores muito baixos ou altos são mantidos; ver qualidade_por_ano.csv.
+faixa_etaria_mae,derivada de IDADEMAE,rótulo,Faixa etária da mãe.,10 a 14; 15 a 19; 20 a 24; 25 a 29; 30 a 34; 35 a 39; 40 a 44; 45 ou mais,
+estado_civil_mae,ESTCIVMAE,rótulo,Estado civil da mãe.,Solteira; Casada; Viúva; Separada judicialmente/divorciada; União estável; Ignorado,
+escolaridade_mae_anos,ESCMAE,rótulo,Escolaridade da mãe em anos de estudo.,Nenhuma; 1 a 3 anos; 4 a 7 anos; 8 a 11 anos; 12 anos e mais; Ignorado,
+escolaridade_mae_2010,ESCMAE2010,rótulo,"Escolaridade da mãe, classificação de 2010.",Sem escolaridade; Fundamental I; Fundamental II; Médio; Superior incompleto; Superior completo; Ignorado,
+escolaridade_mae_agregada,ESCMAEAGR1,rótulo,"Escolaridade da mãe, agregada.",Sem escolaridade; Fundamental I incompleto; Fundamental I completo; Fundamental II incompleto; Fundamental II completo; Médio incompleto; Médio completo; Superior incompleto; Superior completo; Ignorado; Fundamental I incompleto ou inespecífico; Fundamental II incompleto ou inespecífico; Médio incompleto ou inespecífico,Mesma tabela do campo ESCMAEAGR1 do SIM.
+raca_cor_mae,RACACORMAE,rótulo,Raça/cor da mãe.,Branca; Preta; Amarela; Parda; Indígena,NA quando o campo vem vazio.
+qtd_filhos_vivos,QTDFILVIVO,inteiro,Número de filhos nascidos vivos em gestações anteriores.,,O código 99 vira NA.
+qtd_filhos_mortos,QTDFILMORT,inteiro,Número de filhos nascidos mortos em gestações anteriores.,,O código 99 vira NA.
+qtd_gestacoes_anteriores,QTDGESTANT,inteiro,Número de gestações anteriores.,,O código 99 vira NA.
+qtd_partos_vaginais,QTDPARTNOR,inteiro,Número de partos vaginais anteriores.,,O código 99 vira NA.
+qtd_partos_cesareos,QTDPARTCES,inteiro,Número de partos cesáreos anteriores.,,O código 99 vira NA.
+idade_pai,IDADEPAI,inteiro,Idade do pai em anos.,,Preenchida em uma minoria dos registros. O código 99 vira NA.
+sexo,SEXO,rótulo,Sexo do recém-nascido.,Masculino; Feminino; Ignorado,
+raca_cor,RACACOR,rótulo,Raça/cor do recém-nascido.,Branca; Preta; Amarela; Parda; Indígena,NA quando o campo vem vazio.
+peso_g,PESO,inteiro,"Peso ao nascer, em gramas.",,Valores abaixo de 500 g existem na fonte e foram mantidos; conferir antes de usar em análises.
+faixa_peso,derivada de PESO,rótulo,Faixa de peso ao nascer.,Menos de 1.000 g; 1.000 a 1.499 g; 1.500 a 2.499 g; 2.500 a 2.999 g; 3.000 a 3.999 g; 4.000 g ou mais,
+baixo_peso,derivada de PESO,lógico,Peso ao nascer abaixo de 2.500 g.,verdadeiro; falso,NA sem peso.
+apgar1,APGAR1,inteiro,Índice de Apgar no 1º minuto.,0 a 10,O código 99 vira NA.
+apgar5,APGAR5,inteiro,Índice de Apgar no 5º minuto.,0 a 10,O código 99 vira NA.
+faixa_gestacao,GESTACAO,rótulo,"Duração da gestação, em faixas.",Menos de 22 semanas; 22 a 27 semanas; 28 a 31 semanas; 32 a 36 semanas; 37 a 41 semanas; 42 semanas e mais; Ignorado,
+semanas_gestacao,SEMAGESTAC,inteiro,Semanas de gestação.,,O código 99 vira NA.
+prematuro,derivada de SEMAGESTAC e GESTACAO,lógico,Nascimento com menos de 37 semanas de gestação.,verdadeiro; falso,"Usa semanas_gestacao. Sem ela, usa faixa_gestacao (códigos 1 a 4 = menos de 37 semanas; 5 e 6 = 37 ou mais). NA se as duas faltam."
+tipo_gravidez,GRAVIDEZ,rótulo,Tipo de gravidez.,Única; Dupla; Tripla e mais; Ignorada,
+tipo_parto,PARTO,rótulo,Tipo de parto.,Vaginal; Cesáreo; Ignorado,
+cesariana,derivada de PARTO,lógico,Parto cesáreo.,verdadeiro; falso,NA quando o tipo de parto é ignorado.
+faixa_consultas_prenatal,CONSULTAS,rótulo,"Número de consultas de pré-natal, em faixas.",Nenhuma; 1 a 3; 4 a 6; 7 e mais; Ignorado,
+n_consultas_prenatal,CONSPRENAT,inteiro,Número de consultas de pré-natal.,,O código 99 vira NA.
+mes_inicio_prenatal,MESPRENAT,inteiro,Mês da gestação em que o pré-natal começou.,,"O código 99 vira NA. Também fica NA quando o campo vem vazio, o que é mais comum sem pré-natal ou com consultas ignoradas."
+anomalia_congenita,IDANOMAL,rótulo,Presença de anomalia congênita.,Sim; Não; Ignorado,
+codigo_anomalia,CODANOMAL,texto,Código CID-10 da anomalia congênita.,,Em sua maioria do capítulo XVII (iniciados por Q). NA quando vazio.
+apresentacao_fetal,TPAPRESENT,rótulo,Apresentação fetal no parto.,Cefálico; Pélvica ou podálica; Transversa; Ignorado,
+trabalho_parto_induzido,STTRABPART,rótulo,Trabalho de parto induzido.,Sim; Não; Não se aplica; Ignorado,
+cesarea_antes_trabalho_parto,STCESPARTO,rótulo,Cesárea ocorreu antes do trabalho de parto.,Sim; Não; Não se aplica; Ignorado,
+tpmetestim,TPMETESTIM,texto,"Código original do campo TPMETESTIM, sem rótulo: o domínio não foi conferido com o dicionário oficial.",,NA quando o campo vem vazio.
+tpnascassi,TPNASCASSI,texto,"Código original do campo TPNASCASSI, sem rótulo: o domínio não foi conferido com o dicionário oficial.",,NA quando o campo vem vazio.
+tpfuncresp,TPFUNCRESP,texto,"Código original do campo TPFUNCRESP, sem rótulo: o domínio não foi conferido com o dicionário oficial.",,NA quando o campo vem vazio.
+tpdocresp,TPDOCRESP,texto,"Código original do campo TPDOCRESP, sem rótulo: o domínio não foi conferido com o dicionário oficial.",,NA quando o campo vem vazio.
+kotelchuck,KOTELCHUCK,texto,"Código original do campo KOTELCHUCK, sem rótulo: o domínio não foi conferido com o dicionário oficial.",,NA quando o campo vem vazio.
+paridade,PARIDADE,texto,"Código original do campo PARIDADE, sem rótulo: o domínio não foi conferido com o dicionário oficial.",,NA quando o campo vem vazio.
+tprobson,TPROBSON,texto,"Código original do campo TPROBSON, sem rótulo: o domínio não foi conferido com o dicionário oficial.",,NA quando o campo vem vazio.
